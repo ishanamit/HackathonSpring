@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.hackathon.domain.UserProfile;
 import com.stackroute.hackathon.service.UserProfileService;
+import com.stackroute.hackathon.validation.UserProfileValidator;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +24,12 @@ public class UserProfileController {
     @Autowired
     private UserProfileService userProfileService;
     
+    UserProfileValidator validator;
    @GetMapping("/userprofile")
     public ResponseEntity<?> getAllUserProfile() {
         try
         {
-        	
+        
         return new  ResponseEntity<List<UserProfile>>(userProfileService.getAllUserProfile(), HttpStatus.OK);
         }  
         catch(Exception e)
@@ -54,7 +56,8 @@ public class UserProfileController {
     public ResponseEntity<String> addUser(@RequestBody UserProfile userProfile) {
         try
         {
-        	
+        validator.validateUserEmail(userProfile.getEmailId());
+        validator.ValidateName(userProfile.getUserName());
         userProfileService.saveUserProfile(userProfile);
         return new ResponseEntity("user profile successfully added !", HttpStatus.OK);
         }
@@ -69,6 +72,8 @@ public class UserProfileController {
     public ResponseEntity<String> updateRepos(@RequestBody UserProfile userProfile, @PathVariable int id) {
         try
         {
+        validator.validateUserEmail(userProfile.getEmailId());
+        validator.ValidateName(userProfile.getUserName());
         userProfileService.UpdateUserProfile(id, userProfile);
         return new ResponseEntity("user profile successfully updated !", HttpStatus.OK);
         }
