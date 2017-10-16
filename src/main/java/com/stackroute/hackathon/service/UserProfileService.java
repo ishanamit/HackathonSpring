@@ -50,4 +50,16 @@ public class UserProfileService {
 		else
 		userProfileRepository.delete(id);
 	}
+	public void setUserprofileRepository(UserProfileRepository productrepository) {
+		// TODO Auto-generated method stub
+		
+	}
+	public UserProfile getProductById(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public UserProfile setProduct(UserProfile product) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

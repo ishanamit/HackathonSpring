@@ -71,15 +71,23 @@ public class UserProfileControllerTest {
     	 HttpEntity<UserProfile> entity = new HttpEntity<UserProfile>(updatedUser, headers);
          
          ResponseEntity<String> response = restTemplate.exchange(
-         createURLWithPort("/userprofile/1"),
+         createURLWithPort("/userprofile/3"),
          HttpMethod.PUT, entity, String.class);
          assertNotNull(response);
          String actual = response.getBody();
-         System.out.println(actual);
-         assertEquals("user profile successfully updated !",actual);
-
+         assertEquals(actual,"user profile successfully updated !");
+        
     }
     @Test
     public void testDeleteUser() throws Exception {
+    	HttpEntity<UserProfile> entity = new HttpEntity<UserProfile>(updatedUser, headers);
+        
+        ResponseEntity<String> response = restTemplate.exchange(
+        createURLWithPort("/userprofile/3"),
+        HttpMethod.DELETE, entity, String.class);
+        assertNotNull(response);
+        String actual = response.getBody();
+        assertEquals(actual,"user successfully deleted !");
+    	
     }
 }
