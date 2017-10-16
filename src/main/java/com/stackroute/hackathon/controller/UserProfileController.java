@@ -25,7 +25,7 @@ public class UserProfileController {
     private UserProfileService userProfileService;
     
     UserProfileValidator validator;
-   @GetMapping("/userprofile")
+   @GetMapping("/userprofile")  /*mapping url to retrieve the userprofiles of the users*/
     public ResponseEntity<?> getAllUserProfile() {
         try
         {
@@ -38,7 +38,7 @@ public class UserProfileController {
             return new ResponseEntity<String>("No Content Found",HttpStatus.NO_CONTENT);
          }
         }
-    @GetMapping("/userprofile/{id}")
+    @GetMapping("/userprofile/{id}")/*mapping url to retrieve the userprofiles of the users by id*/
     public ResponseEntity<?> getUser(@PathVariable int id) {
         try
         {
@@ -52,11 +52,11 @@ public class UserProfileController {
     }
 
      
-   @PostMapping("/userprofile")
+   @PostMapping("/userprofile")/*mapping url to add the userprofiles of the users*/
     public ResponseEntity<String> addUser(@RequestBody UserProfile userProfile) {
         try
         {
-        validator.validateUserEmail(userProfile.getEmailId());
+        validator.validateUserEmail(userProfile.getEmailId());/*validation performed to check for null useremail and name*/
         validator.ValidateName(userProfile.getUserName());
         userProfileService.saveUserProfile(userProfile);
         return new ResponseEntity("user profile successfully added !", HttpStatus.OK);
@@ -68,7 +68,7 @@ public class UserProfileController {
         }
     }
         
-   @PutMapping("/userprofile/{id}")
+   @PutMapping("/userprofile/{id}")/*mapping url to update/*mapping url to add the userprofiles of the users*/ 
     public ResponseEntity<String> updateRepos(@RequestBody UserProfile userProfile, @PathVariable int id) {
         try
         {
@@ -86,7 +86,7 @@ public class UserProfileController {
         
        
    
-   @DeleteMapping("/userprofile/{id}")
+   @DeleteMapping("/userprofile/{id}")/*mapping url to delete the userprofiles of the users*/
     public ResponseEntity<String> deleteUsers(@PathVariable int id,@RequestBody UserProfile userProfile) {
         try
         {

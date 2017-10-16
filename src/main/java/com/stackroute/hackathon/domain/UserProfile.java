@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@Entity   /*the entity instances will be updated or read from the database*/
 @Table(name="UserProfile")
 public class UserProfile {
 
